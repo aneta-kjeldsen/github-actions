@@ -19,8 +19,7 @@ try {
     .toString()
     .trim();
   core.setOutput("job_output", jobOutput);
-
-  const octokit = new octokit__WEBPACK_IMPORTED_MODULE_0__/* .Octokit */ .vd({ auth: process.env.GITHUB_TOKEN });
+  const octokit = new octokit__WEBPACK_IMPORTED_MODULE_0__/* .Octokit */ .vd({ auth: core.getInput("token") });
   const {
     data: { login },
   } = await octokit.rest.users.getAuthenticated();
