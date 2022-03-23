@@ -27,11 +27,12 @@ try {
       annotations: first,
     },
   };
-  await octokit.checks.create(check).catch(async (error) => {
+  const run = await octokit.checks.create(check).catch(async (error) => {
     console.log("Failed to create check with error:", error);
     const PRE_HEAD = (await execa("git", ["rev-parse", "HEAD^1"])).stdout;
     return octokit.checks.create({ ...check, head_sha: PRE_HEAD });
   });
+  console.log(run);
 } catch (error) {
   core.setFailed(error.message);
 }
