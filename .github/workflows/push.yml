@@ -12,8 +12,8 @@ jobs:
       - name: Hello world action step
         id: hello
         uses: ./.github/actions/chromatic
-        # with:
-        #   token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Job output
         run: echo "${{ steps.hello.outputs.job_output }}"
