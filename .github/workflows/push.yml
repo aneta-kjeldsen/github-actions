@@ -12,9 +12,6 @@ jobs:
       - name: Hello world action step
         id: hello
         uses: ./.github/actions/chromatic
-        permissions:
-          contents: write
-          pull-requests: write
         with:
           token: "${{ secrets.MY_GITHUB_TOKEN }}"
 
