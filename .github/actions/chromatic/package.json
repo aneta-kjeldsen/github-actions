@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.3",
-    "create-check": "^0.6.40"
+    "create-check": "^0.6.40",
+    "octokit": "^1.7.1"
   }
 }
