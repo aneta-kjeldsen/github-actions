@@ -1,5 +1,5 @@
 name: Push
-on: push
+on: pull_request
 
 jobs:
   hello_world_job:
@@ -15,3 +15,8 @@ jobs:
 
       - name: Job output
         run: echo "${{ steps.hello.outputs.job_output }}"
+
+      - name: PR number
+        run: |
+          pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          echo "${{ pull_number }}"
