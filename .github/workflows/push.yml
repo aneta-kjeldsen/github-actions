@@ -25,7 +25,7 @@ jobs:
       - name: Configure gh cli
         run: |
           mkdir -p ~/.config/gh;
-          echo "${{ secrets.MY_GITHUB_TOKEN }}" >> mytoken.txt;
+          echo "${{ secrets.GITHUB_TOKEN }}" >> mytoken.txt;
           gh auth login --with-token < mytoken.txt;
 
       - name: Write comment
