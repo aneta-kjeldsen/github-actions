@@ -19,3 +19,13 @@ jobs:
       - name: PR number
         run: |
           echo "${{ github.event.number }}"
+
+      - name: Configure gh cli
+        run: |
+          mkdir -p ~/.config/gh;
+          echo "${{ secrets.GITHUB_TOKEN }}" >> mytoken.txt;
+          gh auth login --with-token < mytoken.txt;
+
+      - name: Write comment
+        run: |
+          gh pr comment ${{ github.event.number }} -b ${{ steps.hello.outputs.job_output }}
