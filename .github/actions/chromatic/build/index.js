@@ -20522,14 +20522,17 @@ const execSync = (__nccwpck_require__(2081).execSync);
 
 
 try {
-  const jobOutput = execSync(`npm -v`).toString().trim();
+  const jobOutput = execSync(`npm -v
+  node -v`)
+    .toString()
+    .trim();
   core.setOutput("job_output", jobOutput);
 
   const main = async () => {
     await create_check__WEBPACK_IMPORTED_MODULE_0___default()({
       tool: "stylelint",
       name: "Check Styles for Errors",
-      annotations: createAnnotations(results),
+      annotations: "test",
       errorCount,
       warningCount,
       appId: APP_ID,
