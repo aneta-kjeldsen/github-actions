@@ -18,5 +18,4 @@ jobs:
 
       - name: PR number
         run: |
-          pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          echo "${{ pull_number }}"
+          echo "${{ github.event.number }}"
