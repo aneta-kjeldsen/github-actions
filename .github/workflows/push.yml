@@ -30,4 +30,5 @@ jobs:
 
       - name: Write comment
         run: |
-          gh pr comment ${{ github.event.number }} -b ${{ steps.hello.outputs.job_output }}
+          echo -e "${{ steps.hello.outputs.job_output }}" > msg
+          export msg=$(cat msg) ; gh pr comment ${{ github.event.number }} -b "$msg"
