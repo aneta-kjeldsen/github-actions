@@ -15,8 +15,8 @@ try {
       tool: "stylelint",
       name: "Check Styles for Errors",
       annotations: "test",
-      errorCount,
-      warningCount,
+      errorCount: 0,
+      warningCount: 1,
       appId: APP_ID,
       privateKey: PRIVATE_KEY,
     });
