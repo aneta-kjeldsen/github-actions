@@ -1,0 +1,8 @@
+name: "chromatic"
+description: "chromatic"
+outputs:
+  job_output:
+    description: "Job output"
+runs:
+  using: "node16"
+  main: "build/index.js"
