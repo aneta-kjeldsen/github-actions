@@ -12,8 +12,11 @@ jobs:
       - name: Hello world action step
         id: hello
         uses: ./.github/actions/chromatic
+        permissions:
+          contents: write
+          pull-requests: write
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.MY_GITHUB_TOKEN }}"
 
       - name: Job output
         run: echo "${{ steps.hello.outputs.job_output }}"
@@ -25,7 +28,7 @@ jobs:
       - name: Configure gh cli
         run: |
           mkdir -p ~/.config/gh;
-          echo "${{ secrets.GITHUB_TOKEN }}" >> mytoken.txt;
+          echo "${{ secrets.MY_GITHUB_TOKEN }}" >> mytoken.txt;
           gh auth login --with-token < mytoken.txt;
 
       - name: Write comment
