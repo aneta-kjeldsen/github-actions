@@ -35,12 +35,11 @@ try {
 
   const newPullRequestBody = pullRequestBody.replace(
     /<!--BUILD INFO START-->([sS]*?)<!--BUILD INFO END-->/gm,
-    newDescription
+    "<!--BUILD INFO START-->testing<!--BUILD INFO END-->"
   );
 
-  console.log(pullRequestBody.match(re));
-
   console.log({
+    pullRequestBody,
     newPullRequestBody,
     pullRequestMetaBody,
     pullRequestMetaTag,
