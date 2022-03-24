@@ -1746,19 +1746,15 @@ try {
       → Tested 134 stories across 36 components; captured 134 snapshots in 3 minutes 44 seconds`
       .toString()
       .trim();
-  const [storybookDetails] = jobOutput.match(
-    /View your Storybook at https:\/\/([\s\S]*?).chromatic.com/
-  );
-  const [buildDetails] = jobOutput.match(/appId=([\s\S]*?)\n/);
-  console.log(
-    "storybookDetails",
-    jobOutput.match(/View your Storybook at https:\/\/([\s\S]*?).chromatic.com/)
-  );
-  console.log("buildDetails", buildDetails);
+  const storybookDetails = jobOutput
+    .match(/View your Storybook at https:\/\/([\s\S]*?).chromatic.com/)[0]
+    .replace("View your Storybook at ", "");
+  const buildDetails = jobOutput.match(/appId=([\s\S]*?)\n/)[0];
+  console.log("storybookDetails: ", storybookDetails);
+  console.log("buildDetails: ", buildDetails);
 
-  const output = `[View Storybook](https://${storybookDetails}.chromatic.com) | [View VR build results](https://www.chromatic.com/build?appId=${buildDetails})`;
-  // core.setOutput("job_output", output);
-  core.setOutput("job_output", "testing again");
+  const output = `[View Storybook](${storybookDetails}) | [View VR build results](https://www.chromatic.com/build?${buildDetails})`;
+  core.setOutput("job_output", output);
 } catch (error) {
   core.setFailed(error.message);
 }
