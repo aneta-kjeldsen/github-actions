@@ -45,6 +45,8 @@ try {
 
   const newPullRequestBody = pullRequestBody.replace(re, newDescription);
 
+  console.log(pullRequest.body.match(re));
+
   console.log({
     newPullRequestBody,
     pullRequestMetaBody,
