@@ -51,13 +51,13 @@ try {
     /View your Storybook at https:\/\/([\s\S]*?).chromatic.com/
   );
   const [buildDetails] = jobOutput.match(/appId=([\s\S]*?)\n/);
-  console.log("storybookDetails", storybookDetails);
+  console.log(
+    "storybookDetails",
+    jobOutput.match(/View your Storybook at https:\/\/([\s\S]*?).chromatic.com/)
+  );
   console.log("buildDetails", buildDetails);
 
-  const output = `
-[View Storybook](https://${storybookDetails}.chromatic.com)
-[View VR build results](https://www.chromatic.com/build?appId=${buildDetails})
-  `;
+  const output = `[View Storybook](https://${storybookDetails}.chromatic.com) | [View VR build results](https://www.chromatic.com/build?appId=${buildDetails})`;
   core.setOutput("job_output", output);
 } catch (error) {
   core.setFailed(error.message);

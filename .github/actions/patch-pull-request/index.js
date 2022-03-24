@@ -29,12 +29,10 @@ try {
     `<!--${pullRequestMetaTag} START-->([\s\S]*?)<!--${pullRequestMetaTag} END-->`,
     "gm"
   );
-  const newPullRequestBody = pullRequestBody.replace(
-    re,
-    `<!--${pullRequestMetaTag} START-->
-${pullRequestMetaBody}
-<!--${pullRequestMetaTag} END-->`
-  );
+  const newDescription = `<!--${pullRequestMetaTag} START-->
+  ${pullRequestMetaBody}
+  <!--${pullRequestMetaTag} END-->`;
+  const newPullRequestBody = pullRequestBody.replace(re, newDescription);
 
   await octokit.request("PATCH /repos/{owner}/{repo}/pulls/{pull_number}", {
     owner: githubOwner,

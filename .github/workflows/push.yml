@@ -20,7 +20,7 @@ jobs:
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           github_pull_number: ${{ github.event.number }}
-          pull_request_meta_body: ${{ steps.chromatic.outputs.job_output }}
+          pull_request_meta_body: "${{ steps.chromatic.outputs.job_output }}"
           pull_request_meta_tag: "BUILD INFO"
 
       # - name: PR number
