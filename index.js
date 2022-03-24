@@ -39,7 +39,7 @@
 //   `curl -i -X POST -H "Authorization: Bearer ${token}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/aneta-jeldsen/github-actions/check-runs`
 // );
 
-const pullRequestBody = "This is the body.\r\n\r\n";
+const pullRequestBody = null;
 const pullRequestMetaBody = "testing one";
 const pullRequestMetaTag = "BUILD INFO";
 
@@ -53,7 +53,7 @@ const re = new RegExp(
 );
 
 const newDescription = `<!--${pullRequestMetaTag} START-->${pullRequestMetaBody}<!--${pullRequestMetaTag} END-->`;
-const matchTag = pullRequestBody.match(re);
+const matchTag = pullRequestBody ? pullRequestBody.match(re) : null;
 
 const newPullRequestBody = matchTag
   ? pullRequestBody.replace(re, newDescription)
