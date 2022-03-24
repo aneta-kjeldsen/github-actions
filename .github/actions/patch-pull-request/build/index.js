@@ -33,7 +33,7 @@ try {
       pull_number: githubPullNumber,
     }
   );
-  const pullRequestBody = pullRequest.body;
+  const pullRequestBody = pullRequest.body ? pullRequest.body : "";
 
   const re = new RegExp(
     "<!--" +
@@ -47,7 +47,7 @@ try {
 ${pullRequestMetaBody}
 <!--${pullRequestMetaTag} END-->`;
 
-  const matchTag = pullRequestBody ? pullRequestBody.match(re) : null;
+  const matchTag = pullRequestBody ? pullRequestBody.match(re) : "";
 
   const newPullRequestBody = matchTag
     ? pullRequestBody.replace(re, newDescription)
