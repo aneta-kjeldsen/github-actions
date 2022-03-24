@@ -43,7 +43,9 @@ try {
       " END-->",
     "gmi"
   );
-  const newDescription = `<!--${pullRequestMetaTag} START-->${pullRequestMetaBody}<!--${pullRequestMetaTag} END-->`;
+  const newDescription = `<!--${pullRequestMetaTag} START-->
+${pullRequestMetaBody}
+<!--${pullRequestMetaTag} END-->`;
 
   const newPullRequestBody = pullRequestBody.replace(re, newDescription);
 
