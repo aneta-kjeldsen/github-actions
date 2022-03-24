@@ -13,8 +13,8 @@ jobs:
         id: hello
         uses: ./.github/actions/chromatic
         with:
-          # token: "${{ secrets.MY_GITHUB_TOKEN }}"
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.MY_GITHUB_TOKEN }}"
+          # token: "${{ secrets.GITHUB_TOKEN }}"
           # token: "${{ secrets.APP_TOKEN }}"
 
       - name: Job output
