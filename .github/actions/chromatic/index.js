@@ -14,12 +14,12 @@ try {
     data: { login },
   } = await octokit.rest.users.getAuthenticated();
   console.log("Hello, %s", login);
-  const run = await octokit.rest.checks.get({
-    owner,
-    repo,
-    check_run_id,
+  const { data: pullRequest } = await octokit.rest.pulls.get({
+    owner: "aneta-kjeldsen",
+    repo: "github-actions",
+    pull_number: 1,
   });
-  console.log(run);
+  console.log(pullRequest);
 } catch (error) {
   core.setFailed(error.message);
 }
