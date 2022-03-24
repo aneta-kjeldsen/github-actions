@@ -44,6 +44,8 @@ try {
   <!--${pullRequestMetaTag} END-->`;
   const newPullRequestBody = pullRequestBody.replace(re, newDescription);
 
+  console.log(newPullRequestBody);
+
   await octokit.request("PATCH /repos/{owner}/{repo}/pulls/{pull_number}", {
     owner: githubOwner,
     repo: githubRepo,
