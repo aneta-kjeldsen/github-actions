@@ -53,13 +53,20 @@ try {
     }
   );
   const pullRequestBody = pullRequest.body;
-  console.log(pullRequestBody);
+
+  const newPullRequestBody = pullRequestBody.replace(
+    /<!--BUILD INFO START-->([\s\S]*?)<!--BUILD INFO END-->/gm,
+    `<!--BUILD INFO START-->
+[View Storybook](https://6239db4e06e800003a113142-ywwgedejas.chromatic.com/)
+[View VR build details](https://www.chromatic.com/build?appId=6239db4e06e800003a113142&number=28)
+<!--BUILD INFO END-->`
+  );
 
   await octokit.request("PATCH /repos/{owner}/{repo}/pulls/{pull_number}", {
     owner: "aneta-kjeldsen",
     repo: "github-actions",
     pull_number: 1,
-    body: pullRequestBody,
+    body: newPullRequestBody,
   });
 } catch (error) {
   core.setFailed(error.message);

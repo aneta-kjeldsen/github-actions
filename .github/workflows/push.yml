@@ -20,20 +20,20 @@ jobs:
       - name: Job output
         run: echo "${{ steps.hello.outputs.job_output }}"
 
-      - name: PR number
-        run: |
-          echo "${{ github.event.number }}"
+      # - name: PR number
+      #   run: |
+      #     echo "${{ github.event.number }}"
 
-      - name: Configure gh cli
-        run: |
-          mkdir -p ~/.config/gh;
-          echo "${{ secrets.GITHUB_TOKEN }}" >> mytoken.txt;
-          gh auth login --with-token < mytoken.txt;
+      # - name: Configure gh cli
+      #   run: |
+      #     mkdir -p ~/.config/gh;
+      #     echo "${{ secrets.GITHUB_TOKEN }}" >> mytoken.txt;
+      #     gh auth login --with-token < mytoken.txt;
 
-      - name: Write comment
-        run: |
-          echo -e "${{ steps.hello.outputs.job_output }}" > msg
-          export msg=$(cat msg) ; gh pr comment ${{ github.event.number }} -b "$msg"
+      # - name: Write comment
+      #   run: |
+      #     echo -e "${{ steps.hello.outputs.job_output }}" > msg
+      #     export msg=$(cat msg) ; gh pr comment ${{ github.event.number }} -b "$msg"
 
       # - name: Change PR body
       #   run: |
