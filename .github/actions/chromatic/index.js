@@ -19,7 +19,7 @@ try {
     repo: "github-actions",
     pull_number: 1,
   });
-  console.log(pullRequest);
+  console.log("pullRequest", pullRequest);
 } catch (error) {
   core.setFailed(error.message);
 }
