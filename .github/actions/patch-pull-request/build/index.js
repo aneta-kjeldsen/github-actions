@@ -47,7 +47,11 @@ try {
 ${pullRequestMetaBody}
 <!--${pullRequestMetaTag} END-->`;
 
-  const newPullRequestBody = pullRequestBody.replace(re, newDescription);
+  const matchTag = pullRequestBody.match(re);
+
+  const newPullRequestBody = matchTag
+    ? pullRequestBody.replace(re, newDescription)
+    : pullRequestBody + "\n" + newDescription;
 
   console.log({
     pullRequestBody,
