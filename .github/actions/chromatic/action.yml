@@ -1,5 +1,8 @@
 name: "chromatic"
 description: "chromatic"
+uses: actions/checkout@v2
+    with:
+    fetch-depth: 2
 inputs:
   chromatic_token:
     required: true
