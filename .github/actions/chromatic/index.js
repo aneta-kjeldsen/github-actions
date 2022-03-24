@@ -26,7 +26,7 @@ try {
   const { data: comment } = octokit.rest.repos.updateCommitComment({
     owner: "aneta-kjeldsen",
     repo: "github-actions",
-    comment_id: "1077185265",
+    comment_id: "1076761106",
     body: "new body",
   });
   console.log("comment", comment);
