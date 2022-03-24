@@ -36,16 +36,12 @@ try {
   const pullRequestBody = pullRequest.body;
 
   const re = new RegExp(
-    "<!--" +
-      pullRequestMetaTag +
-      " START-->([sS]*?)<!--" +
-      pullRequestMetaTag +
-      " END-->",
+    /<!--BUILD INFO START-->([sS]*?)<!--BUILD INFO END-->/,
     "gm"
   );
-  const newDescription = `<!--${pullRequestMetaTag} START-->
+  const newDescription = `<!--BUILD INFO START-->
   ${pullRequestMetaBody}
-  <!--${pullRequestMetaTag} END-->`;
+  <!--BUILD INFO END-->`;
 
   const newPullRequestBody = pullRequestBody.replace(re, newDescription);
 
