@@ -9,7 +9,10 @@ try {
     .toString()
     .trim();
   core.setOutput("job_output", jobOutput);
-  const octokit = new Octokit({ auth: core.getInput("token") });
+  const octokit = new Octokit({
+    auth: core.getInput("token"),
+    userAgent: "myApp v1.2.3",
+  });
   // const {
   //   data: { login },
   // } = await octokit.rest.users.getAuthenticated();
