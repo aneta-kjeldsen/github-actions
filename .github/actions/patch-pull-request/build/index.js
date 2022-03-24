@@ -43,7 +43,10 @@ try {
   ${pullRequestMetaBody}
   <!--BUILD INFO END-->`;
 
-  const newPullRequestBody = pullRequestBody.replace(re, newDescription);
+  const newPullRequestBody = pullRequestBody.replace(
+    /<!--BUILD INFO START-->([sS]*?)<!--BUILD INFO END-->/gm,
+    newDescription
+  );
 
   console.log(pullRequestBody.match(re));
 
