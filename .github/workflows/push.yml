@@ -13,8 +13,8 @@ jobs:
         id: hello
         uses: ./.github/actions/chromatic
         with:
-          token: "${{ secrets.MY_GITHUB_TOKEN }}"
-          # token: "${{ secrets.GITHUB_TOKEN }}"
+          # token: "${{ secrets.MY_GITHUB_TOKEN }}"
+          token: "${{ secrets.GITHUB_TOKEN }}"
           # token: "${{ secrets.APP_TOKEN }}"
 
       - name: Job output
@@ -34,3 +34,7 @@ jobs:
         run: |
           echo -e "${{ steps.hello.outputs.job_output }}" > msg
           export msg=$(cat msg) ; gh pr comment ${{ github.event.number }} -b "$msg"
+
+      - name: Change PR body
+        run: |
+          gh pr edit ${{ github.event.number }} --title "I found a bug" --body "Nothing works"
