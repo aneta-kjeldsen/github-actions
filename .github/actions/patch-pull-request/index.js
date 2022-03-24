@@ -26,7 +26,11 @@ try {
   const pullRequestBody = pullRequest.body;
 
   const re = new RegExp(
-    `<!--${pullRequestMetaTag} START-->([\s\S]*?)<!--${pullRequestMetaTag} END-->`,
+    "<!--" +
+      pullRequestMetaTag +
+      " START-->([sS]*?)<!--" +
+      pullRequestMetaTag +
+      " END-->",
     "gm"
   );
   const newDescription = `<!--${pullRequestMetaTag} START-->
@@ -35,7 +39,7 @@ try {
 
   const newPullRequestBody = pullRequestBody.replace(re, newDescription);
 
-  console.log(pullRequest.body.match(re));
+  console.log(pullRequestBody.match(re));
 
   console.log({
     newPullRequestBody,
