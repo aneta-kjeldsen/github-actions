@@ -1,1 +1,1 @@
-const test = "new change"
+const test = "trigger"
