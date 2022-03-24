@@ -32,9 +32,16 @@ try {
   const newDescription = `<!--${pullRequestMetaTag} START-->
   ${pullRequestMetaBody}
   <!--${pullRequestMetaTag} END-->`;
+
   const newPullRequestBody = pullRequestBody.replace(re, newDescription);
 
-  console.log(newPullRequestBody);
+  console.log({
+    newPullRequestBody,
+    pullRequestMetaBody,
+    pullRequestMetaTag,
+    re,
+    newDescription,
+  });
 
   await octokit.request("PATCH /repos/{owner}/{repo}/pulls/{pull_number}", {
     owner: githubOwner,
