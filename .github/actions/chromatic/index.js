@@ -10,10 +10,10 @@ try {
     .trim();
   core.setOutput("job_output", jobOutput);
   const octokit = new Octokit({ auth: core.getInput("token") });
-  const {
-    data: { login },
-  } = await octokit.rest.users.getAuthenticated();
-  console.log("Hello, %s", login);
+  // const {
+  //   data: { login },
+  // } = await octokit.rest.users.getAuthenticated();
+  // console.log("Hello, %s", login);
   const { data: pullRequest } = await octokit.rest.pulls.get({
     owner: "aneta-kjeldsen",
     repo: "github-actions",
