@@ -1,17 +1,17 @@
-var fs = require("fs");
-var jwt = require("jsonwebtoken");
-const { Octokit } = require("@octokit/core");
+// var fs = require("fs");
+// var jwt = require("jsonwebtoken");
+// const { Octokit } = require("@octokit/core");
 
-var privateKey = fs.readFileSync("private-key.pem");
-var token = jwt.sign(
-  {
-    iss: "183407",
-    iat: Math.floor(Date.now() / 1000) - 60,
-    exp: Math.floor(Date.now() / 1000) + 60 * 10,
-  },
-  privateKey,
-  { algorithm: "RS256" }
-);
+// var privateKey = fs.readFileSync("private-key.pem");
+// var token = jwt.sign(
+//   {
+//     iss: "183407",
+//     iat: Math.floor(Date.now() / 1000) - 60,
+//     exp: Math.floor(Date.now() / 1000) + 60 * 10,
+//   },
+//   privateKey,
+//   { algorithm: "RS256" }
+// );
 // YOUR_JWT, ID: 183407
 // console.log(
 //   `curl -i -H "Authorization: Bearer ${token}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/app`
@@ -38,3 +38,25 @@ var token = jwt.sign(
 // console.log(
 //   `curl -i -X POST -H "Authorization: Bearer ${token}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/aneta-jeldsen/github-actions/check-runs`
 // );
+
+const pullRequestBody =
+  "This is the body.\r\n\r\n<!--BUILD INFO START-->testing<!--BUILD INFO END-->";
+const pullRequestMetaBody = "testing one";
+const pullRequestMetaTag = "BUILD INFO";
+
+const re = new RegExp(
+  "<!--" +
+    pullRequestMetaTag +
+    " START-->([\\s\\S]*?)<!--" +
+    pullRequestMetaTag +
+    " END-->",
+  "gmi"
+);
+const newDescription = `<!--${pullRequestMetaTag} START-->${pullRequestMetaBody}<!--${pullRequestMetaTag} END-->`;
+
+const newPullRequestBody = pullRequestBody.replace(re, newDescription);
+
+console.log({
+  re,
+  newPullRequestBody,
+});

@@ -26,10 +26,14 @@ try {
   const pullRequestBody = pullRequest.body;
 
   const re = new RegExp(
-    /<!--BUILD INFO START-->([sS]*?)<!--BUILD INFO END-->/,
-    "gm"
+    "<!--" +
+      pullRequestMetaTag +
+      " START-->([\\s\\S]*?)<!--" +
+      pullRequestMetaTag +
+      " END-->",
+    "gmi"
   );
-  const newDescription = `<!--BUILD INFO START-->${pullRequestMetaBody}<!--BUILD INFO END-->`;
+  const newDescription = `<!--${pullRequestMetaTag} START-->${pullRequestMetaBody}<!--${pullRequestMetaTag} END-->`;
 
   const newPullRequestBody = pullRequestBody.replace(re, newDescription);
 
