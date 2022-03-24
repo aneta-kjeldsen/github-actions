@@ -1758,7 +1758,7 @@ try {
 
   const output = `[View Storybook](https://${storybookDetails}.chromatic.com) | [View VR build results](https://www.chromatic.com/build?appId=${buildDetails})`;
   // core.setOutput("job_output", output);
-  core.setOutput("job_output", "testing");
+  core.setOutput("job_output", "testing again");
 } catch (error) {
   core.setFailed(error.message);
 }

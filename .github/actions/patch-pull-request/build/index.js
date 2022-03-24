@@ -39,14 +39,9 @@ try {
     /<!--BUILD INFO START-->([sS]*?)<!--BUILD INFO END-->/,
     "gm"
   );
-  const newDescription = `<!--BUILD INFO START-->
-  ${pullRequestMetaBody}
-  <!--BUILD INFO END-->`;
+  const newDescription = `<!--BUILD INFO START-->${pullRequestMetaBody}<!--BUILD INFO END-->`;
 
-  const newPullRequestBody = pullRequestBody.replace(
-    /<!--BUILD INFO START-->([sS]*?)<!--BUILD INFO END-->/gm,
-    "<!--BUILD INFO START-->testing<!--BUILD INFO END-->"
-  );
+  const newPullRequestBody = pullRequestBody.replace(re, newDescription);
 
   console.log({
     pullRequestBody,
