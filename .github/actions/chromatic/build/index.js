@@ -1755,7 +1755,10 @@ try {
   console.log("storybookDetails: ", storybookDetails);
   console.log("buildDetails: ", buildDetails);
 
-  const output = `[View Storybook](${storybookDetails}) | [View VR build results](https://www.chromatic.com/build?${buildDetails})`;
+  // const output = `[View Storybook](${storybookDetails}) | [View VR build results](https://www.chromatic.com/build?${buildDetails})`;
+  const output = `
+[View Storybook](${storybookDetails})
+[View VR build results](https://www.chromatic.com/build?${buildDetails})`;
   core.setOutput("job_output", output);
 } catch (error) {
   core.setFailed(error.message);
