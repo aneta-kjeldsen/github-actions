@@ -1757,6 +1757,9 @@ try {
 
   const output = `[View Storybook](${storybookDetails}) | [Visual regression build results](https://www.chromatic.com/build?${buildDetails})`;
   core.setOutput("job_output", output);
+
+  const diff = execSync("git diff --name-only HEAD^ HEAD");
+  console.log({ diff });
 } catch (error) {
   core.setFailed(error.message);
 }
