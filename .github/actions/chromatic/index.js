@@ -24,18 +24,20 @@ try {
   // });
   // console.log("pullRequest", pullRequest);
 
-  const { data: checks } = await octokit.rest.checks.update({
-    owner: "aneta-kjeldsen",
-    repo: "github-actions",
-    check_run_id: "2032421924",
-    name: "custom-check",
-    details_url: "https://google.com",
-    status: "completed",
-    conclusion: "neutral",
-    output: {
-      title: "testing custom check",
-    },
-  });
+  const { data: checks } = await octokit.rest.checks
+    .update({
+      owner: "aneta-kjeldsen",
+      repo: "github-actions",
+      check_run_id: "2032421924",
+      name: "custom-check",
+      details_url: "https://google.com",
+      status: "completed",
+      conclusion: "neutral",
+      output: {
+        title: "testing custom check",
+      },
+    })
+    .catch((error) => console.log(error));
   console.log("checks", checks);
 } catch (error) {
   core.setFailed(error.message);
