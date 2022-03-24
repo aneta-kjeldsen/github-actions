@@ -16,12 +16,13 @@ try {
   //   data: { login },
   // } = await octokit.rest.users.getAuthenticated();
   // console.log("Hello, %s", login);
-  const { data: pullRequest } = await octokit.rest.pulls.get({
-    owner: "aneta-kjeldsen",
-    repo: "github-actions",
-    pull_number: 1,
-  });
-  console.log("pullRequest", pullRequest);
+
+  // const { data: pullRequest } = await octokit.rest.pulls.get({
+  //   owner: "aneta-kjeldsen",
+  //   repo: "github-actions",
+  //   pull_number: 1,
+  // });
+  // console.log("pullRequest", pullRequest);
 
   const { data: checks } = await octokit.rest.checks.update({
     owner: "aneta-kjeldsen",
