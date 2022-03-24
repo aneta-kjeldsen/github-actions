@@ -34,12 +34,15 @@ try {
   // });
   // console.log("pullRequest", pullRequest);
 
-  await octokit.rest.repos.updateCommitComment({
-    owner: "aneta-kjeldsen",
-    repo: "github-actions",
-    comment_id: 1077397270,
-    body: "new body",
-  });
+  await octokit.request(
+    "PATCH /repos/{owner}/{repo}/pulls/comments/{comment_id}",
+    {
+      owner: "aneta-kjeldsen",
+      repo: "github-actions",
+      comment_id: 1077397270,
+      body: "new body",
+    }
+  );
 
   // await octokit.request("PATCH /repos/{owner}/{repo}/pulls/{pull_number}", {
   //   owner: "aneta-kjeldsen",
