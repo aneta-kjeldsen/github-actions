@@ -23,20 +23,22 @@ try {
   //   pull_number: 1,
   // });
   // console.log("pullRequest", pullRequest);
+
   // const { data: comment } = await octokit.rest.repos.updateCommitComment({
   //   owner: "aneta-kjeldsen",
   //   repo: "github-actions",
   //   comment_id: 1076761106,
   //   body: "new body",
   // });
-
-  // await octokit.request('PATCH /repos/{owner}/{repo}/comments/{comment_id}', {
-  //   owner: "aneta-kjeldsen",
-  //   repo: "github-actions",
-  //   comment_id: 1076761106,
-  //   body: "new body"
-  // })
   // console.log("comment", comment);
+
+  await octokit.request("PATCH /repos/{owner}/{repo}/pulls/{pull_number}", {
+    owner: "aneta-kjeldsen",
+    repo: "github-actions",
+    pull_number: 1,
+    title: "title",
+    body: "my new body",
+  });
 } catch (error) {
   core.setFailed(error.message);
 }

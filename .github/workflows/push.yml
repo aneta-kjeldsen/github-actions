@@ -35,6 +35,6 @@ jobs:
           echo -e "${{ steps.hello.outputs.job_output }}" > msg
           export msg=$(cat msg) ; gh pr comment ${{ github.event.number }} -b "$msg"
 
-      - name: Change PR body
-        run: |
-          gh pr edit ${{ github.event.number }} --title "I found a bug" --body "Nothing works"
+      # - name: Change PR body
+      #   run: |
+      #     gh pr edit ${{ github.event.number }} --title "I found a bug" --body "Nothing works"
