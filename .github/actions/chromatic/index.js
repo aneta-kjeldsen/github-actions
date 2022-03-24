@@ -47,7 +47,7 @@ try {
   const newPullRequestBody = pullRequestBody.replace(
     /<!--BUILD INFO START-->([\s\S]*?)<!--BUILD INFO END-->/gm,
     `<!--BUILD INFO START-->
-[View Storybook](https://6239db4e06e800003a113142-ywwgedejas.chromatic.com/)
+[View Storybook](https://google.com/)
 [View VR build details](https://www.chromatic.com/build?appId=6239db4e06e800003a113142&number=28)
 <!--BUILD INFO END-->`
   );
