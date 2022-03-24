@@ -50,7 +50,9 @@ try {
   const storybookDetails = jobOutput
     .match(/View your Storybook at https:\/\/([\s\S]*?).chromatic.com/)[0]
     .replace("View your Storybook at ", "");
-  const buildDetails = jobOutput.match(/appId=([\s\S]*?)\n/)[0];
+  const buildDetails = jobOutput
+    .match(/appId=([\s\S]*?)\n/)[0]
+    .replaceAll("\n", "");
   console.log("storybookDetails: ", storybookDetails);
   console.log("buildDetails: ", buildDetails);
 
