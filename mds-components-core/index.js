@@ -1,1 +1,1 @@
-const test = "trigger 1"
+const test = "trigger"
