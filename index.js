@@ -1,6 +1,7 @@
 // var fs = require("fs");
 // var jwt = require("jsonwebtoken");
 // const { Octokit } = require("@octokit/core");
+const execSync = require("child_process").execSync;
 
 // var privateKey = fs.readFileSync("private-key.pem");
 // var token = jwt.sign(
@@ -42,7 +43,11 @@
 const pullRequestBody = null;
 const pullRequestMetaBody = "testing one";
 const pullRequestMetaTag = "BUILD INFO";
+const diff = execSync("git diff --name-only HEAD").toString();
 
+const diffArray = diff.split("\n")
+const coreChanges = diffArray.filter(diff => diff.includes("mds-components-core"))
+console.log(coreChanges)
 const re = new RegExp(
   "<!--" +
     pullRequestMetaTag +

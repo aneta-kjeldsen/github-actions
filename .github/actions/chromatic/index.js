@@ -60,6 +60,10 @@ try {
   core.setOutput("job_output", output);
   const diff = execSync("git diff --name-only HEAD^..HEAD").toString();
   console.log("diff", diff);
+  
+const diffArray = diff.split("\n")
+const coreChanges = diffArray.filter(diff => diff.includes("mds-components-core"))
+console.log("coreChanges", coreChanges);
 } catch (error) {
   core.setFailed(error.message);
 }
