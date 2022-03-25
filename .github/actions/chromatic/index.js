@@ -1,10 +1,7 @@
 const core = require("@actions/core");
-const execSync = require("child_process").execSync;
-import { Octokit } from "octokit";
 
 try {
-  const jobOutput =
-    `> @maersk-global/components@0.0.0 chromatic:ci /home/runner/work/mds-components/mds-components
+  const jobOutput = `> @maersk-global/components@0.0.0 chromatic:ci /home/runner/work/mds-components/mds-components
   > chromatic --storybook-build-dir storybook-static --only '**/{E2E/VR,Foundations,V2 legacy}/**'
   
   
@@ -45,25 +42,17 @@ try {
   ℹ View build details at https://www.chromatic.com/build?appId=6239db4e06e800003a113142&number=28
   Build 28 passed!
       → Tested 134 stories across 36 components; captured 134 snapshots in 3 minutes 44 seconds`
-      .toString()
-      .trim();
+    .toString()
+    .trim();
   const storybookDetails = jobOutput
     .match(/View your Storybook at https:\/\/([\s\S]*?).chromatic.com/)[0]
     .replace("View your Storybook at ", "");
-  const buildDetails = jobOutput
-    .match(/appId=([\s\S]*?)\n/)[0]
-    .replaceAll("\n", "");
+  const buildDetails = jobOutput.match(/appId=([\s\S]*?)\n/)[0].replaceAll("\n", "");
   console.log("storybookDetails: ", storybookDetails);
   console.log("buildDetails: ", buildDetails);
 
   const output = `[View Storybook](${storybookDetails}) | [Visual regression build results](https://www.chromatic.com/build?${buildDetails})`;
   core.setOutput("job_output", output);
-  const diff = execSync("git diff --name-only HEAD^..HEAD").toString();
-  console.log("diff", diff);
-  
-const diffArray = diff.split("\n")
-const coreChanges = diffArray.filter(diff => diff.includes("mds-components-core"))
-console.log("coreChanges", coreChanges);
 } catch (error) {
   core.setFailed(error.message);
 }

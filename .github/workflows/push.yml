@@ -24,6 +24,9 @@ jobs:
           github_pull_number: ${{ github.event.number }}
           pull_request_meta_body: "${{ steps.chromatic.outputs.job_output }}"
           pull_request_meta_tag: "BUILD INFO"
+          
+      - name: Check changes to core
+        uses: ./.github/actions/check-core-changes
 
       # - name: PR number
       #   run: |

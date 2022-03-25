@@ -1,0 +1,5 @@
+name: "check core chagnes"
+description: "check core chagnes"
+runs:
+  using: "node16"
+  main: "build/index.js"
