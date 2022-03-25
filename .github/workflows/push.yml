@@ -1,5 +1,5 @@
 name: Push
-on: push
+on: pull_request
 
 jobs:
   hello_world_job:
@@ -8,10 +8,41 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
 
-      - name: Hello world action step
-        id: hello
+      - name: Chromatic action
+        id: chromatic
         uses: ./.github/actions/chromatic
+        with:
+          chromatic_token: "123"
 
-      - name: Job output
-        run: echo "${{ steps.hello.outputs.job_output }}"
+      - name: Patch pull request after VR
+        uses: ./.github/actions/patch-pull-request
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          github_pull_number: ${{ github.event.number }}
+          pull_request_meta_body: "${{ steps.chromatic.outputs.job_output }}"
+          pull_request_meta_tag: "BUILD INFO"
+          
+      - name: Check changes to core
+        uses: ./.github/actions/check-core-changes
+
+      # - name: PR number
+      #   run: |
+      #     echo "${{ github.event.number }}"
+
+      # - name: Configure gh cli
+      #   run: |
+      #     mkdir -p ~/.config/gh;
+      #     echo "${{ secrets.GITHUB_TOKEN }}" >> mytoken.txt;
+      #     gh auth login --with-token < mytoken.txt;
+
+      # - name: Write comment
+      #   run: |
+      #     echo -e "${{ steps.hello.outputs.job_output }}" > msg
+      #     export msg=$(cat msg) ; gh pr comment ${{ github.event.number }} -b "$msg"
+
+      # - name: Change PR body
+      #   run: |
+      #     gh pr edit ${{ github.event.number }} --title "I found a bug" --body "Nothing works"

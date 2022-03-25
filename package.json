@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "crypto": "^1.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "octokit": "^1.7.1"
+  },
+  "dependencies": {
+    "@octokit/core": "^3.6.0",
+    "openssl-nodejs": "^1.0.5"
+  }
+}

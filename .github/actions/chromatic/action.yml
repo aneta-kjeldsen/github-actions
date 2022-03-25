@@ -1,5 +1,8 @@
 name: "chromatic"
 description: "chromatic"
+inputs:
+  chromatic_token:
+    required: true
 outputs:
   job_output:
     description: "Job output"
